@@ -4,9 +4,10 @@ services:
     container_name: mongo-service
     image: mongo:latest
     volumes:
-      -./backend/data:/data
+      - ./backend/data:/data
     ports:
       - "27017:27017"
+
   backend:
     container_name: backend
     build: ./backend
@@ -24,6 +25,7 @@ services:
       - ./frontend/.env.docker
     ports:
       - "5173:5173"
+
   redis:
     container_name: redis-service
     restart: unless-stopped
@@ -32,6 +34,3 @@ services:
       - 6379
     depends_on:
       - mongodb
-
-  volumes:
-    data:
